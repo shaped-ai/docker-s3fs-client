@@ -69,12 +69,11 @@ if [ -n "$S3FS_ARGS" ]; then
 fi
 
 # Mount as the requested used.
-su - $RUN_AS -c "s3fs $DEBUG_OPTS ${S3FS_ARGS} \
+su - $RUN_AS -c "s3fs ${AWS_S3_BUCKET} ${DEST} $DEBUG_OPTS ${S3FS_ARGS} \
     -o passwd_file=${AWS_S3_AUTHFILE} \
     -o url=${AWS_S3_URL} \
     -o uid=$UID \
-    -o gid=$GID \
-    ${AWS_S3_BUCKET} ${DEST}"
+    -o gid=$GID"
 
 # s3fs can claim to have a mount even though it didn't succeed.
 # Doing an operation actually forces it to detect that and remove the mount.

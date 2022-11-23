@@ -1,4 +1,4 @@
-FROM alpine:3 AS build
+FROM alpine:3.16 AS build
 
 ARG S3FS_VERSION=v1.91
 
@@ -66,6 +66,7 @@ RUN mkdir /opt/s3fs && \
       fuse \
       libxml2 \
       libcurl \
+      libcrypto1.1 \
       libgcc \
       libstdc++ \
       tini && \
